@@ -1,0 +1,130 @@
+<template name="other">
+
+  <!--hover属性表示是否开启点击态效果 hover-class属性指定点击态的样式 继承与原来样式 所以不需要重写 只要另外加样式-->
+
+  <!--hover-start-time表示按下去多久后开始生效 hover-stay-time表示松开多久失效-->
+  <scroll-view scroll-y="true" scroll-top="100%" style="height:900rpx" upper-threshold="50" bindscrolltoupper="moveToUpper" enable-back-to-top="true">
+
+    <!--scroll-top指定一开始滚动条距离顶部的距离 
+tip:scroll-view必须设定一个高度 如果没有高度则不生效
+scroll-into-view 需要给定一个元素的id 则初始化时滚动容器的顶部与该元素齐平  
+upper-threshold还有个 lower-threshold="Number" 需要的是一个数值
+表示距离顶部或者底部多少时触发绑定的scrolltoupper或者tolower监听器 
+还可以绑定scroll 监听器 即一滚动就触发
+scroll-top scroll-into-view 之类的属性都可以使用{{}}模版值 可以触发事件时更改值 使滚动到指定的定位
+tip:如果需要使用下拉刷新时 需要使用的是页面的滚动而不是scroll-view 否则不能触发下拉刷新
+-->
+
+    <!--<swiper indicator-dots="true" indicator-color="rgba(255,255,255,.8)" circular="true" current="1" bindchange="EventHandle" autoplay="true">-->
+
+    <!--current表示默认显示第几个swiper-item 从0开始 bindchange是绑定当swiperitem切换时触发的函数 autoplay表示是否自动切换-->
+
+    <!--<swiper-item>-->
+    <view class="index-container">
+      <view bindtap="bindViewTap" class="index-userinfo">
+        <image class="index-userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+        <image src="https://just2doit.xyz/timg.jpg" class="index-userinfo-image"></image>
+
+        <!--selectable表示是否允许长按选中 text组件中只允许嵌套text 支持转义符\ 即可以用\n来换行-->
+        <text class="index-userinfo-nickname" selectable="true">{{userInfo.nickName}}</text>
+        <text class="index-userinfo-gender">{{userInfo.gender}}</text>
+        <text class="index-userinfo-city">{{userInfo.city}}</text>
+        <text class="index-userinfo-province">{{userInfo.province}}</text>
+      </view>
+      <view class="index-usermotto">
+
+        <!--默认提供了很多icon 可以直接用官方文档的 或者也可以自己写-->
+        <form bindsubmit="submit">
+
+          <!--可以绑定submit和reset对应的监听事件--->
+
+          <!--当输入时触发input事件 可以直接return一个值来覆盖这个input框的value 还有很多诸如focus blur confirm的事件可以使用-->
+          <icon type="search" size="20" color="black" />
+          <input type="text" focus="true" value="123" confirm-tyoe="send" bindinput="inputValue" />
+          <!--picker会调出选择框 当选择了不同的东西会触发change事件 可以根据e.detail的数据更改index 展示不同的选项-->
+          <!--当mode为selector时才可以使用range 自定义选择内容-->
+          <picker mode="selector" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+            <view class="picker">
+              当前选择：{{array[index]}}
+            </view>
+          </picker>
+
+<!--也可以自定义picker 嵌入在页面中-->
+ <picker-view indicator-style="height: 50px;" style="width: 100%; height: 300px;" value="{{value}}" bindchange="bindChange">
+    <picker-view-column>
+      <view wx:for="{{years}}" style="line-height: 50px">{{item}}年</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{months}}" style="line-height: 50px">{{item}}月</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{days}}" style="line-height: 50px">{{item}}日</view>
+    </picker-view-column>
+  </picker-view>
+ {{"选我"}} <radio value="选我" />
+ <switch type="switch" bindchange="EventHandle"/>
+<!--单选框-->
+<!--多行文本框-->
+ <slider show-value min="0" max="100" value="50"/>
+ <!--radio是单选框 checked属性表示是否选中 value会从bindchange触发的函数中传入-->
+          <checkbox-group bindchange="changeCheck" name="checkbox">
+            <!--要给checkbox-group绑定name formsubmit事件才能接收到detail-->
+            <label wx:for="{{items}}" wx:key="{{index}}">
+              <checkbox value="{{item.name}}" checked="{{item.checked}}" />
+            </label>
+          </checkbox-group>
+
+          <!--当checkbox发生改变时会触发group的change事件 -->
+
+          <!--需要绑定小程序客服 绑定客服后点击这个按钮open-type=concat的时候 发送的消息都会发给绑定的客服-->
+          <contact-button open-type="concat"></contact-button>
+
+          <!--form-type设置button的表单事件 是提交还是reset-->
+          <button class="weui-btn" type="primary" data-name="login" loading form-type="submit">授权登录</button>
+        </form>
+
+        <!--plain="true"代表是否镂空背景颜色 loading属性表示是否前面带loading图片-->
+        <button class="weui-btn" type="default" disabled="true" plain="true" size="mini">注销</button>
+
+        <!--size有效值有mini和default-->
+        <progress percent="{{percent}}" show-info="true" stroke-width="20" />
+        <text class="index-user-motto">{{motto}}</text>
+      </view>
+    </view>
+
+    <!--</swiper-item>-->
+
+    <!--<swiper-item>-->
+    <view class="index-container" hover="true" hover-class="index-container-hover" hover-start-time="1000" hover-stay-time="2000" id="containerTwo">
+      <view bindtap="bindViewTap" class="index-userinfo">
+        <image class="index-userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+        <image src="https://just2doit.xyz/timg.jpg" class="index-userinfo-image"></image>
+        <text class="index-userinfo-nickname">{{userInfo.nickName}}</text>
+        <text class="index-userinfo-gender">{{userInfo.gender}}</text>
+        <text class="index-userinfo-city">{{userInfo.city}}</text>
+        <text class="index-userinfo-province">{{userInfo.province}}</text>
+      </view>
+      <view class="index-usermotto">
+
+        <!--bindxxx可以指定事件对应的回调函数-->
+        <button class="weui-btn" type="primary" data-name="login" catchtouchstart="touchMe">授权登录</button>
+        <button class="weui-btn" type="default" disabled="true" plain="true">注销</button>
+        <text class="index-user-motto">{{motto}}</text>
+      </view>
+    </view>
+
+    <!--</swiper-item>-->
+
+    <!--</swiper>-->
+  </scroll-view>
+  <!-- audio.wxml -->
+<audio poster="{{poster}}" name="{{name}}" author="{{author}}" src="{{src}}" id="myAudio" controls loop></audio>
+
+<button type="primary" bindtap="audioPlay">播放</button>
+<button type="primary" bindtap="audioPause">暂停</button>
+<button type="primary" bindtap="audio14">设置当前播放时间为14秒</button>
+<button type="primary" bindtap="audioStart">回到开头</button>
+<textarea placeholder="你好" />
+  
+  <map id="map" longitude="113.324520" latitude="23.099994" scale="14" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" polyline="{{polyline}}" bindregionchange="regionchange" show-location style="width: 100%; height: 300px;"></map>
+</template>

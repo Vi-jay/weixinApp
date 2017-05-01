@@ -1,0 +1,9 @@
+/**main.wxss**/
+
+.main-container {
+  height: 100%;
+}
+.block{
+    display: block;
+    text-align: center;
+}

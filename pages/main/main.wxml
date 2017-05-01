@@ -1,0 +1,17 @@
+<view class="main-container">
+    <text wx:for="{{msg}}" class="block"  wx:for-item="item" wx:for-index="index" wx:key="index">{{index+":"+item}}</text>
+    <!--bind catch后面跟事件 都可以监听事件 但是bind会冒泡 catch阻止冒泡事件向上冒泡-->
+    <input  />
+    <template name="user">
+    <!--block是一个包装元素 可以作用与所有的子元素 wx:if是惰性加载 按需渲染的 如果不需要的可以用wx:if按需加载-->
+       <block wx:if="{{true}}"> 
+    <text class="block" >{{name}}</text>  
+    <text class="block">{{gender}}</text>
+    <text class="block">{{age}}</text>
+        </block>
+    </template>
+   
+</view>
+<!--如果下面没有用is指定模版则上面的模版不会被渲染-->
+<!--所以可以在is中使用模版 使用js表达式根据条件渲染指定的模版-->
+<template is="{{true?'user':'aa'}}" data="{{...user}}"></template>

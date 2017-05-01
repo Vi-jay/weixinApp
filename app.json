@@ -1,0 +1,36 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/main/main",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"dark",
+    "backgroundColor": "#1aad16",
+    "navigationBarBackgroundColor": "#1aad16",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black" ,
+    "enablePullDownRefresh":true
+  },
+   "tabBar": {
+     "selectedColor": "black",
+     "backgroundColor": "#ccc",
+     "borderStyle": "white",
+     "position":"bottom",
+    "list": [{
+      "pagePath": "pages/index/index",
+          "text": "首页"
+    }, {
+      "pagePath": "pages/main/main",
+      "text": "内容"
+    },{
+       "pagePath": "pages/logs/logs",
+      "text": "购物"
+    }]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true
+}

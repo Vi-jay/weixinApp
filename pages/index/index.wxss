@@ -1,0 +1,51 @@
+/**index.wxss**/
+
+.index-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 200rpx 0;
+}
+.index-container-hover{
+  background: slategrey
+}
+
+.index-userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.index-userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+.index-userinfo-image {
+  width: 128rpx;
+  height: 128rpx;
+  margin: -145rpx 0 0 300rpx;
+  border-radius: 50%;
+}
+
+.index-userinfo-nickname {
+  color: #aaa;
+}
+
+.index-userinfo-city {
+  color: darkgreen;
+}
+
+.index-userinfo-gender {
+  color: black;
+}
+
+.index-userinfo-province {
+  color: darkblue;
+}
+
+.index-usermotto {
+  margin-top: 10%;
+}

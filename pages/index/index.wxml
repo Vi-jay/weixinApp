@@ -1,0 +1,4 @@
+
+<!--index.wxml-->
+<import src="other.wxml"/>
+<template is="other" data="{{...store}}"/>
